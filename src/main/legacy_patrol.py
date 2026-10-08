@@ -113,11 +113,3 @@ def run_legacy_sim(rounds, stamina_start=100):
         "stamina": stamina,
         "trace": trace,
     }
-
-
-
-
-
-
-
-
