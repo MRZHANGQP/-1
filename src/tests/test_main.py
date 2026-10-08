@@ -38,7 +38,8 @@ class TestQ1:
     def test_report_battery_tiers(self):
         # 三档：高电量 OK、中电量 WARNING、低电量 LOW
         assert call(M.status_report, "U", "HERO", 50, 100, 75).endswith("|OK")
-        assert call(M.status_report, "U", "HERO", 50, 100, 30).endswith("|WARNING")
+        assert call(M.status_report, "U", "HERO",
+                    50, 100, 30).endswith("|WARNING")
         assert call(M.status_report, "U", "HERO", 50, 100, 5).endswith("|LOW")
 
     def test_report_battery_ok(self):
@@ -83,7 +84,6 @@ class TestQ2:
         assert got["total"] == 30
         assert got["by_armor"] == {"front": 30, "left": 0, "right": 0}
         assert got["most_hit"] == "front"
-
 
     def test_empty_log(self):
         got = call(M.analyze_damage_log, [])
@@ -239,7 +239,8 @@ class TestQ6:
 
     def test_bfs_disclosed_semantics(self):
         ring = {(x, -1) for x in range(-1, 6)} | {(x, 5) for x in range(-1, 6)}
-        ring |= {(-1, y) for y in range(-1, 6)} | {(5, y) for y in range(-1, 6)}
+        ring |= {(-1, y) for y in range(-1, 6)} | {(5, y)
+                                                   for y in range(-1, 6)}
         assert call(M.bfs_path_length, (2, 2), (2, 2), ring) == 0
         assert call(M.bfs_path_length, (0, 0), (4, 4), ring) == 8
         sealed = ring | {(2, y) for y in range(5)}
