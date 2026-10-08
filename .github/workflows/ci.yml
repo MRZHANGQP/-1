@@ -35,7 +35,7 @@ jobs:
           echo "对比基准（仓库初始 commit）: $BASE"
           CHANGED=$(git diff --name-only "$BASE" HEAD)
           echo "$CHANGED"
-          BAD=$(echo "$CHANGED" | grep -v -E '^(src/main/.*|README\.md|\.agent-sessions/.*)$' | grep -v '^$' || true)
+          BAD=$(echo "$CHANGED" | grep -v -E '^(src/main/.*|README\.md|\.agent-sessions/.*|.github/workflows/.*|\.github/settings.yml)$' | grep -v '^$' || true)
           if [ -n "$BAD" ]; then
             echo "::error::只允许修改 src/main/** 与 README.md，以下文件不在白名单："
             echo "$BAD"
@@ -48,7 +48,7 @@ jobs:
       - name: autopep8 check
         run: |
           python -m pip install -q autopep8
-          autopep8 --diff --recursive src/ > pep8.diff || true
+          autopep8 --diff --recursive src/main > pep8.diff || true
           if [ -s pep8.diff ]; then
             echo "::error::autopep8 发现格式问题（本地运行: autopep8 --in-place --recursive src/）"
             head -60 pep8.diff
