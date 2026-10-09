@@ -610,4 +610,4 @@ def bfs_path_length(start, target, obstacles):
 
     return -1 
 
-#check
+# check
