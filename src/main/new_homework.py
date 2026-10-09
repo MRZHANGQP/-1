@@ -608,6 +608,7 @@ def bfs_path_length(start, target, obstacles):
             dist[nxt] = dist[cur] + 1
             q.append(nxt)
 
-    return -1 
+    return -1
 
 # check
+
