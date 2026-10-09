@@ -609,5 +609,5 @@ def bfs_path_length(start, target, obstacles):
             q.append(nxt)
 
     return -1 
-# re-submit for CI check
 
+#check
